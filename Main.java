@@ -24,6 +24,30 @@ public class Main {
         c2A.implicitAdd(c3A);
         if(c2A.getReal() == 368 && c2A.getImag() == 226) testCasesPassed++;
 
+        //test add
+        testCases++;
+        Complex c1Ad = new Complex(6,7);
+        Complex c2Ad = new Complex(22,135);
+        Complex cAdOut1 = c1Ad.add(c2Ad);
+        if(cAdOut1.getReal() == 28 && cAdOut1.getImag() == 142) testCasesPassed++;
+ 
+        testCases++;
+        Complex c3Ad = new Complex(346,91);
+        Complex cAdOut2 = c2Ad.add(c3Ad);
+        if(cAdOut2.getReal() == 368 && cAdOut2.getImag() == 226) testCasesPassed++;
+
+        //test subtract
+        testCases++;
+        Complex c1sub = new Complex(50,1);
+        Complex c2sub = new Complex(22,1);
+        Complex c1subOut = c1sub.subtract(c2sub);
+        if(c1subOut.getReal() == 28 && c1subOut.getImag() == 0) testCasesPassed++;
+ 
+        testCases++;
+        Complex c3sub = new Complex(322,91);
+        Complex c2subOut = c2sub.subtract(c3sub);
+        if(c2subOut.getReal() == -300 && c2subOut.getImag() == -90) testCasesPassed++;
+
         //test mult complex
         testCases++;
         Complex c1M = new Complex(2,5);
@@ -112,8 +136,6 @@ public class Main {
         testCases++;
         p1.FourierTransform(new Complex[]{new Complex(4,2),new Complex(16,2),new Complex(56,18)});
         testCasesPassed++; //No idea what it should be, so just checking if it runs
-
-        
 
         System.out.println();
         System.out.println("Test Cases Passed: " + testCasesPassed + "/" + testCases);

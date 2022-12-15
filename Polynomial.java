@@ -27,6 +27,43 @@ public class Polynomial{
         return tc.evaluateAll(Complex.rootsOfUnity(t.length));
     }
 
+    // compute the FFT of x[], assuming its length n is a power of 2
+    public Complex[] FastFourierTransform(Complex[] x) {
+        int n = x.length;
+
+        // base case
+        if (n == 1) return new Complex[] { x[0] };
+
+        // radix 2 Cooley-Tukey FFT
+        if (n % 2 != 0) {
+            throw new IllegalArgumentException("n is not a power of 2");
+        }
+
+        // compute FFT of even terms
+        Complex[] even = new Complex[n/2];
+        for (int k = 0; k < n/2; k++) {
+            even[k] = x[2*k];
+        }
+        Complex[] evenFFT = FastFourierTransform(even);
+
+        // compute FFT of odd terms
+        Complex[] odd  = even;  // reuse the array (to avoid n log n space)
+        for (int k = 0; k < n/2; k++) {
+            odd[k] = x[2*k + 1];
+        }
+        Complex[] oddFFT = FastFourierTransform(odd);
+
+        // combine
+        Complex[] y = new Complex[n];
+        for (int k = 0; k < n/2; k++) {
+            double kth = -2 * k * Math.PI / n;
+            Complex wk = new Complex(Math.cos(kth), Math.sin(kth));
+            y[k] = evenFFT[k].add(wk.mult(oddFFT[k]));
+            y[k + n/2] = evenFFT[k].subtract(wk.mult(oddFFT[k]));
+        }
+        return y;
+    }
+
 
     //Forgot what the use was for this:
     

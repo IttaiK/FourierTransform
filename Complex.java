@@ -27,6 +27,18 @@ public class Complex {
         imag += o.getImag();
     }
 
+    public Complex add(Complex o){//return this + o
+        double r = o.getReal()+real;
+        double im = o.getImag()+imag;
+        return new Complex(r,im);
+    }
+
+    public Complex subtract(Complex o){//return this - o
+        double r = real-o.getReal();
+        double im = imag-o.getImag();
+        return new Complex(r,im);
+    }
+
     public Complex mult(Complex o){
         double a = (o.getReal()*real)-(o.getImag()*imag);
         double b = (o.getReal()*imag)+(o.getImag()*real);
@@ -45,10 +57,6 @@ public class Complex {
         double r = Math.pow(mag,k)*Math.cos(k*ang);
         double _imag = Math.pow(mag,k)*Math.sin(k*ang);
         return new Complex(r, _imag);
-    }
-
-    public String toString(){
-        return real + " + " + imag + "i";
     }
 
     public static Complex rootOfUnity(double k, double n){
@@ -71,5 +79,9 @@ public class Complex {
         BigDecimal bd = BigDecimal.valueOf(value);
         bd = bd.setScale(places, RoundingMode.HALF_UP);
         return bd.doubleValue();
+    }
+
+    public String toString(){
+        return real + " + " + imag + "i";
     }
 }

@@ -17,6 +17,11 @@ List of personally written methods for the Complex class:
         Out: N/A
         Effect: adds another complex number to the complex number called upon, changing the called upon complex number
 
+    add():
+        In: Complex 
+        Out: Complex
+        Effect: returns the result of adding a complex number with the called uppon complex number
+
     mult():
         In: Complex 
         Out: Complex
@@ -69,3 +74,8 @@ List of methods in the Polynomial class written by others:
         In: Complex[]
         Out: Complex[]
         Effect: returns the fourier transform of a complex array
+
+    FastFourierTransform(): (Robert Sedgewick and Kevin Wayne -> https://introcs.cs.princeton.edu/java/97data/FFT.java.html. Modified by me, and helper methods created by me)
+        In: Complex[]
+        Out: Complex[]
+        Effect: returns the fast fourier transform of a complex array of a length that is a power of 2
